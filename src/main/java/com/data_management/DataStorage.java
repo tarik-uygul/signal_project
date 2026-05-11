@@ -22,7 +22,12 @@ public class DataStorage {
     public DataStorage() {
         this.patientMap = new HashMap<>();
     }
-
+    private DataReader reader; // A DataReader instance for reading patient data from an external source.
+    public DataStorage(DataReader reader) {
+        this.patientMap = new HashMap<>();
+        this.reader = reader;
+    }
+    
     /**
      * Adds or updates patient data in the storage.
      * If the patient does not exist, a new Patient object is created and added to
