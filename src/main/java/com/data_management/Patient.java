@@ -23,6 +23,11 @@ public class Patient {
         this.patientId = patientId;
         this.patientRecords = new ArrayList<>();
     }
+    public int getPatientId() {
+        return patientId;
+    }
+    
+
 
     /**
      * Adds a new record to this patient's list of medical records.
