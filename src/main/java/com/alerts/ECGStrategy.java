@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ECGStrategy implements AlertStrategy {
+    private AlertFactory factory = new ECGAlertFactory();
     private static final int WINDOW_SIZE = 50; // The sliding window size (e.g., last 50 readings)
     private static final double PEAK_MULTIPLIER = 1.5; // Trigger if the peak is 50% above the average
 
@@ -37,7 +38,7 @@ public class ECGStrategy implements AlertStrategy {
             // Check if the current value is an abnormal peak
             // (Using absolute value in case the baseline fluctuates around 0)
             if (Math.abs(currentVal) > Math.abs(currentAverage * PEAK_MULTIPLIER)) {
-                alerts.add(new Alert(
+                alerts.add(factory.createAlert(
                     String.valueOf(patient.getPatientId()), 
                     "Abnormal ECG Peak", 
                     ecgRecords.get(i).getTimestamp()

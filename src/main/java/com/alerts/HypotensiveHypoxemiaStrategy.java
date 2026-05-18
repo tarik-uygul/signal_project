@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HypotensiveHypoxemiaStrategy implements AlertStrategy {
+    private AlertFactory factory = new HypotensiveHypoxemiaAlertFactory();
 
     @Override
     public List<Alert> checkAlert(Patient patient) {
@@ -28,7 +29,7 @@ public class HypotensiveHypoxemiaStrategy implements AlertStrategy {
                 for (PatientRecord satRecord : saturationRecords) {
                     if (Math.abs(satRecord.getTimestamp() - bpRecord.getTimestamp()) <= 60000) {
                         if (satRecord.getMeasurementValue() < 92.0) {
-                            alerts.add(new Alert(
+                            alerts.add(new BasicAlert(
                                 String.valueOf(patient.getPatientId()), 
                                 "Hypotensive Hypoxemia", 
                                 bpRecord.getTimestamp()

@@ -7,6 +7,9 @@ import java.util.List;
 
 public class BloodSaturationStrategy implements AlertStrategy {
 
+        // 1. Instantiate the factory
+            private AlertFactory factory = new BloodPressureAlertFactory();
+
     private static final double SATURATION_THRESHOLD = 92.0;
 
     @Override
@@ -25,7 +28,7 @@ public class BloodSaturationStrategy implements AlertStrategy {
         // 2. Check for Low Saturation (< 92%)
         for (PatientRecord record : saturationRecords) {
             if (record.getMeasurementValue() < SATURATION_THRESHOLD) {
-                alerts.add(new Alert(
+                alerts.add(factory.createAlert(
                     String.valueOf(record.getPatientId()), 
                     "Low Saturation", 
                     record.getTimestamp()
@@ -49,7 +52,7 @@ public class BloodSaturationStrategy implements AlertStrategy {
 
                 // If within 10 minutes, did it drop by 5% or more?
                 if (startRecord.getMeasurementValue() - currentRecord.getMeasurementValue() >= 5.0) {
-                    alerts.add(new Alert(
+                    alerts.add(factory.createAlert(
                         String.valueOf(currentRecord.getPatientId()), 
                         "Rapid Saturation Drop", 
                         currentRecord.getTimestamp()

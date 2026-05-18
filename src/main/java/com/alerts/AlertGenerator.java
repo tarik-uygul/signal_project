@@ -34,8 +34,13 @@ public class AlertGenerator {
         }
     }
 
-    private void triggerAlert(Alert alert) {
-        System.out.println("CRITICAL ALERT! Patient: " + alert.getPatientId() + 
+   private void triggerAlert(Alert alert) {
+        // Example: If it's a critical threshold, let's decorate it as Priority!
+        if (alert.getCondition().contains("Critical")) {
+            alert = new PriorityAlertDecorator(alert);
+        }
+        
+        System.out.println("ALERT TRIGGERED! Patient: " + alert.getPatientId() + 
                            " | Condition: " + alert.getCondition() + 
                            " | Time: " + alert.getTimestamp());
     }
