@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BloodSaturationStrategyTest {
+class OxygenSaturationStrategyTest {
 
-    private BloodSaturationStrategy strategy;
+    private OxygenSaturationStrategy strategy;
     private Patient patient;
 
     @BeforeEach
     void setUp() {
-        strategy = new BloodSaturationStrategy();
+        strategy = new OxygenSaturationStrategy();
         patient = new Patient(1); // Create a fresh patient for each test
     }
 

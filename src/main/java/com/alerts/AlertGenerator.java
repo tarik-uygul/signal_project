@@ -14,15 +14,13 @@ public class AlertGenerator {
         this.alertStrategies = new ArrayList<>();
         
         
-        // Register all your alert rules here
+        
          alertStrategies.add(new BloodPressureStrategy());
-         alertStrategies.add(new BloodSaturationStrategy());
-         // Inside AlertGenerator constructor:
-       
+        alertStrategies.add(new OxygenSaturationStrategy()); // UPDATED
+        alertStrategies.add(new HeartRateStrategy()); // UPDATED
         alertStrategies.add(new HypotensiveHypoxemiaStrategy());
-        alertStrategies.add(new ECGStrategy());
         alertStrategies.add(new TriggeredAlertStrategy());
-        // Add others as you create them...
+        
     }
 
     public void evaluateData(Patient patient) {

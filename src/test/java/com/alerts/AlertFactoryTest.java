@@ -25,8 +25,8 @@ class AlertFactoryTest {
     }
 
     @Test
-    void testECGFactory() {
-        AlertFactory factory = new ECGAlertFactory();
+    void testHeartRateFactory() {
+        AlertFactory factory = new HeartRateAlertFactory();
         Alert alert = factory.createAlert("3", "Abnormal Peak", 3000L);
         
         assertEquals("3", alert.getPatientId());
